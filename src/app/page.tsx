@@ -1,10 +1,20 @@
+import ArtworkMapping from "./artworkmapping/ArtworkMapping";
+
 export default function Home() {
   return (
-    <main className="absolute flex h-full w-full flex-col items-center justify-center text-center">
-      <h1 className="mb-4 text-4xl">👋</h1>
-      <p className="w-80 text-balance text-neutral-600">
-        Hi there! Feel free to delete this and do your own thing - good luck!
-      </p>
+    <main className="absolute flex w-full flex-col items-center justify-center text-center">
+      <div className="flex flex-col items-center justify-center mt-[50px] gap-[5px] ">
+        <h1 className="text-[50px] text-black font-mono font-medium">
+          DISCOVER
+        </h1>
+        <h1 className="text-[50px] text-black font-mono font-medium">
+          <b> ARTISTIC  </b> TAPESTRY 
+        </h1>
+      </div>
+
+      <div className="flex flex-row items-center justify-center mt-5 mb-10 gap-[70px]">
+        <ArtworkMapping/>
+      </div>
     </main>
   );
 }

@@ -30,7 +30,7 @@ type Color = {
   population: number;
 };
 
-type Artwork = {
+export type Artwork = {
   id: number;
   api_model: string;
   api_link: string;
