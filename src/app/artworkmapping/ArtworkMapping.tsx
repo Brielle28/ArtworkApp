@@ -41,9 +41,6 @@ const ArtworkMapping: React.FC = () => {
               <h2 className="font-semibold text-white mt-4">{artwork.title}</h2>
             </div>
           </Link>
-          <Link href="/pages">
-            view more
-          </Link>
         </div>
       ))}
     </div>
