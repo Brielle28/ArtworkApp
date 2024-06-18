@@ -1,40 +1,42 @@
+// src/app/artworkpage/page.tsx
 'use client'
-// src/pages/artwork/[id].tsx
-
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-
-type Artwork = {
-  id: number;
-  title: string;
-  image_id: string;
-  description: string;
-};
+import { FetchArtworks } from '../artworkmapping/artworkmapping';
+import { Artwork } from '../../types/art-api';
 
 const ArtworkPage: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
   const [artwork, setArtwork] = useState<Artwork | null>(null);
-  const [showDescription, setShowDescription] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (id) {
-      const fetchArtwork = async () => {
-        const res = await fetch(`https://api.artic.edu/api/v1/artworks/${id}`);
-        const data = await res.json();
-        setArtwork({
-          id: data.data.id,
-          title: data.data.title,
-          image_id: data.data.image_id,
-          description: data.data.thumbnail.alt_text || 'No description available.'
-        });
-      };
+    const fetchArtworkById = async (id: string) => {
+      setIsLoading(true);
+      try {
+        const artworks = await FetchArtworks();
+        const selectedArtwork = artworks.find(art => art.id === parseInt(id));
+        setArtwork(selectedArtwork || null);
+      } catch (error) {
+        console.error('Failed to fetch artwork details:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-      fetchArtwork();
+    if (id) {
+      fetchArtworkById(id as string);
     }
   }, [id]);
 
-  if (!artwork) return <div>Loading...</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!artwork) {
+    return <div>Artwork not found.</div>;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -44,15 +46,19 @@ const ArtworkPage: React.FC = () => {
         alt={artwork.title}
         className="w-full h-auto mb-8"
       />
-      <button
+      <p className="mt-4">{artwork.description || 'No description available.'}</p>
+    </div>
+  );
+};
+
+export default ArtworkPage;
+
+
+{/* <button
         onClick={() => setShowDescription(!showDescription)}
         className="bg-blue-500 text-white px-4 py-2 rounded"
       >
         {showDescription ? 'Hide' : 'Show'} Description
       </button>
       {showDescription && <p className="mt-4">{artwork.description}</p>}
-    </div>
-  );
-};
-
-export default ArtworkPage;
+    </div> */}

@@ -1,6 +1,8 @@
-import ArtworkMapping from "./artworkmapping/ArtworkMapping";
+// src/app/page.tsx
 
-export default function Home() {
+import ArtworkMapping from "@/component/artworkmapping/ArtworkMapping";
+
+const Home: React.FC = () => {
   return (
     <main className="absolute flex w-full flex-col items-center justify-center text-center">
       <div className="flex flex-col items-center justify-center mt-[50px] gap-[5px] ">
@@ -8,7 +10,7 @@ export default function Home() {
           DISCOVER
         </h1>
         <h1 className="text-[50px] text-black font-mono font-medium">
-          <b> ARTISTIC  </b> TAPESTRY 
+          <b>ARTISTIC</b> TAPESTRY 
         </h1>
       </div>
 
@@ -18,3 +20,5 @@ export default function Home() {
     </main>
   );
 }
+
+export default Home;
