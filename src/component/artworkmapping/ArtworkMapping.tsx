@@ -1,8 +1,9 @@
 // src/app/artworkmapping/artworkmapping.tsx
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Artwork } from '../../types/art-api';
+import '../artworkmapping/ArtworkMapping.css'; // Remove if you are not using custom CSS
 
 export const FetchArtworks = async (): Promise<Artwork[]> => {
   try {
@@ -22,6 +23,17 @@ const ArtworkMapping: React.FC = () => {
   const [artworks, setArtworks] = useState<Artwork[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const date = new Date();
+  console.log(date);
+  console.log(date.getFullYear(), "year")
+  console.log(date.getDate(), "date")
+  console.log(date.getTime(), "time")
+  console.log(date.getMonth(), "month")
+  console.log(date.getHours(), "hour")
+
+
+
+
   useEffect(() => {
     const fetchArtworks = async () => {
       setIsLoading(true);
@@ -34,25 +46,29 @@ const ArtworkMapping: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-wrap items-center justify-center w-full min-h-screen">
+    <div className="mt-10 grid grid-cols-2 gap-6 px-4">
       {isLoading ? (
-        <div role="status">
-          Loading...
-        </div>
+        <span className="mt-10 loader"></span>
       ) : (
         artworks.map((artwork) => (
-          <div key={artwork.id} className="flex flex-col items-center justify-center text-center bg-black border rounded-lg overflow-hidden m-4 px-6 py-6 max-w-[340px]">
-            <Link href={{ pathname: "/artworkpage", query: { id: artwork.id }}} passHref>
-             
-                <img
-                  src={`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`}
-                  alt={artwork.title}
-                  className="w-full h-64 object-cover rounded-lg"
-                  style={{ maxHeight: '340px' }}
-                />
-                <h2 className="font-semibold text-white mt-4">{artwork.title}</h2>
-                <p className="text-gray-400 mt-2">View More</p>
-             
+          <div
+            key={artwork.id}
+            className="flex size-[550px] flex-col items-center justify-center overflow-hidden rounded-lg border bg-black p-4"
+          >
+            <Link href={`/ArtworkPage/${artwork.id}`}>
+              <div className="block ">
+                <div className="flex flex-col items-center justify-center text-center">
+                  <img
+                    src={`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`}
+                    alt={artwork.title}
+                    className="size-[400px] rounded-lg object-cover"
+                  />
+                  <h2 className="mt-4 max-w-[350px] text-lg font-semibold text-white">
+                    {artwork.title}
+                  </h2>
+                  <a className="mt-2 text-gray-400">View More</a>
+                </div>
+              </div>
             </Link>
           </div>
         ))

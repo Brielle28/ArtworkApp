@@ -1,24 +1,26 @@
-// src/app/page.tsx
+import React from 'react';
+import '../app/globals.css';
+import Link from 'next/link';
 
-import ArtworkMapping from "@/component/artworkmapping/ArtworkMapping";
-
-const Home: React.FC = () => {
+const Page = () => {
   return (
-    <main className="absolute flex w-full flex-col items-center justify-center text-center">
-      <div className="flex flex-col items-center justify-center mt-[50px] gap-[5px] ">
-        <h1 className="text-[50px] text-black font-mono font-medium">
-          DISCOVER
-        </h1>
-        <h1 className="text-[50px] text-black font-mono font-medium">
-          <b>ARTISTIC</b> TAPESTRY 
-        </h1>
+    <>
+      {/* <div className="marquee flex h-screen w-full items-center justify-center"> */}
+      {/* <div className="marquee-content"> */}
+      <div>
+        <div className='flex flex-col items-center text-center justify-center p-[100px]'>
+          <h1 className="text-[50px] font-extrabold">
+            HOME PAGE IS COMING SOON. CURRENTLY WORKING ON DYNAMIC ROUTING PAGE
+          </h1>
+          <Link href="/ArtworkPage">
+            <button className="mt-4 rounded bg-blue-500 px-4 py-2 text-white">
+              Click to Visit Artwork Page
+            </button>
+          </Link>
+        </div>
       </div>
-
-      <div className="flex flex-row items-center justify-center mt-5 mb-10 gap-[70px]">
-        <ArtworkMapping/>
-      </div>
-    </main>
+    </>
   );
-}
+};
 
-export default Home;
+export default Page;
