@@ -1,48 +1,36 @@
 // src/app/page.tsx
 
-import ArtworkMapping from "@/component/artworkmapping/ArtworkMapping";
+import ArtworkMapping from '@/component/artworkmapping/ArtworkMapping';
+import Link from 'next/link';
+
 
 const Home: React.FC = () => {
   return (
     <main className="absolute flex w-full flex-col items-center justify-center text-center">
-      <div className="flex flex-col items-center justify-center mt-[50px] gap-[5px] ">
-        <h1 className="text-[50px] text-black font-mono font-medium">
+      <div className="mt-[50px] flex flex-col items-center justify-center gap-[5px] ">
+        <h1 className="font-mono text-[50px] font-medium text-black">
           DISCOVER
         </h1>
-        <h1 className="text-[50px] text-black font-mono font-medium">
-          <b>ARTISTIC</b> TAPESTRY 
+        <h1 className="font-mono text-[50px] font-medium text-black">
+          <b>ARTISTIC</b> TAPESTRY
         </h1>
       </div>
 
-      <div className="flex flex-row items-center justify-center mb-10 gap-[70px]">
-        <ArtworkMapping/>
+      <div className="mb-10 flex flex-row items-center justify-center gap-[70px]">
+        <ArtworkMapping />
+      </div>
+      <div>
+        <Link href="/">
+          <button className="h-[80px] w-[250px] rounded bg-black px-4 py-2 text-white ">
+            Home Page
+          </button>
+        </Link>
       </div>
     </main>
   );
-}
+};
 
 export default Home;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // // src/app/artworkpage/page.tsx
 // 'use client'
@@ -98,7 +86,6 @@ export default Home;
 // };
 
 // export default ArtworkPage;
-
 
 // {/* <button
 //         onClick={() => setShowDescription(!showDescription)}
